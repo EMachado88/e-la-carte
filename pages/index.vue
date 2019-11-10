@@ -30,10 +30,18 @@
               :loading="generating"
               @click.end="generateMealsList"
             >
-              Generate meal list
+              Generate monthly meals
             </v-btn>
           </div>
-          <div class="lunch" v-else-if="lunch && lunch.main && lunch.side && lunch.dessert">
+          <div class="d-flex flex-column lunch" v-else-if="lunch && lunch.main && lunch.side && lunch.dessert">
+            <v-btn
+              color="primary"
+              class="mt-3"
+              :loading="generating"
+              @click.end="generateMealsList"
+            >
+              Regenerate monthly meals
+            </v-btn>
             <v-row>
               <v-col
                 cols="9"
@@ -104,7 +112,6 @@ export default {
       return this.mealsLists[this.pickerDate][new Date(this.date).getDate() - 1]
     },
     monthGenerated () {
-      console.log(!!this.mealsLists[this.pickerDate])
       return !!this.mealsLists[this.pickerDate]
     }
   },
