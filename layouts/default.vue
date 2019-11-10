@@ -58,7 +58,7 @@ export default {
           to: '/'
         }
       ],
-      title: 'eALaCarte'
+      title: 'eALACARTE'
     }
   }
 }

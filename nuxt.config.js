@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   pwa: {
     manifest: {
-      name: `eALaCarte`,
-      short_name: `eALaCarte`,
+      name: `eALACARTE`,
+      short_name: `eALACARTE`,
       background_color: '#E96C36',
       theme_color: '#E96C36'
     }
@@ -15,7 +15,7 @@ export default {
   */
   head: {
     titleTemplate: title => {
-      return title ? `${title} | eALaCarte` : `eALaCarte`
+      return title ? `${title} | eALACARTE` : `eALACARTE`
     },
     meta: [
       { charset: 'utf-8' },
@@ -29,7 +29,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: colors.blue.darken2 },
   /*
   ** Global CSS
   */
@@ -68,9 +68,9 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      light: true,
       themes: {
-        dark: {
+        light: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
