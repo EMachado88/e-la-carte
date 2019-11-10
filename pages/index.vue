@@ -5,7 +5,7 @@
     align-center
   >
     <v-container>
-      <h1 class="title text-center">Monthly Lunches {{ pickerDate }}</h1>
+      <h1 class="title text-center">Monthly Lunches</h1>
       <v-row>
         <v-col cols="12" sm="6" class="my-2">
           <v-date-picker
@@ -93,35 +93,35 @@ export default {
   data: () => ({
     date: new Date().toISOString().substr(0, 10),
     pickerDate: null,
-    currentMonth: 0,
     daysInMonth: 0,
-    generating: false,
-    monthGenerated: false
+    generating: false
   }),
   computed: {
     mealsLists () {
       return this.$store.state.localStorage.mealsLists
     },
     lunch () {
-      return this.mealsLists[this.currentMonth][new Date(this.date).getDate() - 1]
+      return this.mealsLists[this.pickerDate][new Date(this.date).getDate() - 1]
+    },
+    monthGenerated () {
+      console.log(!!this.mealsLists[this.pickerDate])
+      return !!this.mealsLists[this.pickerDate]
     }
   },
   watch: {
     pickerDate (val) {
+      this.date = `${this.pickerDate}-${new Date(this.date).getDate()}`
+
       const dateArray = val.split('-')
       this.daysInMonth = new Date(dateArray[0], dateArray[1], 0).getDate()
-      this.setMonthGenerated()
-      this.currentMonth = new Date(this.pickerDate).getMonth()
+
     },
   },
   methods: {
-    setMonthGenerated() {
-      this.monthGenerated = this.mealsLists[new Date(this.pickerDate).getMonth()] ? !!this.mealsLists[new Date(this.pickerDate).getMonth()].length : false
-    },
     async generateMealsList () {
       this.generating = true
 
-      const month = this.currentMonth
+      const month = this.pickerDate
       const allMeals = await this.getMeals()
       const daysInMonth = this.daysInMonth
 
@@ -154,8 +154,6 @@ export default {
       }
 
       this.$store.commit('localStorage/setMeals', { month, meals })
-      this.lunch = this.mealsLists[this.currentMonth][new Date(this.pickerDate).getDate() - 1]
-      this.monthGenerated = true
 
       this.generating = false
     },
@@ -192,9 +190,6 @@ export default {
 
       return { mains, sides, desserts }
     }
-  },
-  mounted () {
-    this.setMonthGenerated()
   }
 }
 </script>
