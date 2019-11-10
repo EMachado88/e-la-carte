@@ -2,6 +2,9 @@
 
 > App for generating and maintaining monthly meal lists.
 
+![Preview 1](https://raw.githubusercontent.com/EMachado88/e-la-carte/master/previews/preview1.gif)
+![Preview 2](https://raw.githubusercontent.com/EMachado88/e-la-carte/master/previews/preview2.gif)
+
 Tanya is the manager of her school system’s cafeterias.  Every month she needs to come up with school lunches for the next month.  The school lunches should have a variety of different mains, sides, and desserts.
 
 Write Tanya a program that will put together her lunches for her.
