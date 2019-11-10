@@ -122,7 +122,7 @@ export default {
       this.generating = true
 
       const month = this.pickerDate
-      const allMeals = await this.getMeals()
+      const allMeals = this.$store.state.fetchedMeals ? this.$store.state.fetchedMeals : await this.getMeals()
       const daysInMonth = this.daysInMonth
 
       // Generates a random unique meal
@@ -187,6 +187,8 @@ export default {
       // Get Desserts
       response = await this.$axios.$get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert`)
       const desserts = response.meals
+
+      this.$store.commit('setFetchedMeals', { mains, sides, desserts })
 
       return { mains, sides, desserts }
     }
