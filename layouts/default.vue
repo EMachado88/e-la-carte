@@ -13,7 +13,7 @@
       </v-container>
     </v-content>
     <v-footer
-      fixed
+      absolute
       app
     >
       <span class="d-flex">
